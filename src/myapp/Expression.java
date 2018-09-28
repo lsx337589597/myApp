@@ -1,13 +1,14 @@
 package myapp;
 
 import java.util.Random;
+import java.util.Stack;
 import java.util.regex.Pattern;
 
 public class Expression {
     	Random random=new Random();
     	Random random2=new Random();
     	String[] operator=new String[] {"+","-","×","÷"};
-    	int defualtRange=5;
+    	int defualtRange=20;
     	int defualtNumOfQuestion=50;//
     	/*
     	 * 生成表达式
@@ -44,7 +45,27 @@ public class Expression {
         			return expressionGenerate();
         		}
     	}
-    	
+        /**
+         * 是否是符号
+         * @param s s
+         * @return boolean
+         */
+        private boolean isSymbol(String s) {
+            return s.equals("+") || s.equals("-") || s.equals("×") || s.equals("÷")
+                    || s.equals("(") || s.equals(")");
+        }
+    	/*
+    	 * 对表达式建树
+    	 * @param 表达式雏形
+    	 * @return 正确表达式
+    	 */
+    	public String buildTree(String expression) {
+    		String ex[]=expression.split(" ");
+            
+    		
+            return null;
+    		
+    	}
     	
     	/*
     	 * 显示表达式
