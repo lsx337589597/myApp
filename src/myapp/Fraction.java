@@ -7,6 +7,7 @@ package myapp;
 public class Fraction {
     int numerator;//分子
     int denominator;//分母
+    boolean isNegative=false;//是否为负
     /*
      * 构造分数
      */
@@ -14,9 +15,17 @@ public class Fraction {
    	 if(denominator==0) {
    		 throw new RuntimeException("分母不能为0！");
    	 }
-   	 int mcf=gcd(numerator,denominator);
-   	 this.numerator=numerator/mcf;
-   	 this.denominator=denominator/mcf;
+   //记录负数的标志
+     int isNegative = (numerator*denominator<0)? -1 : 1;
+     if(isNegative==-1) {
+    	 this.isNegative=true;
+     }
+     numerator = Math.abs(numerator);
+     denominator = Math.abs(denominator);
+     int c = gcd(numerator, denominator);
+     //保证只有a才会小于0
+     this.numerator = numerator / c ;
+     this.denominator = denominator / c;
     }
     
     public Fraction(int numerator,int denominator) {
@@ -78,6 +87,14 @@ public class Fraction {
      public Fraction devide(Fraction f) {
     	 return new Fraction(this.numerator*f.denominator,this.denominator*f.numerator);
      }
+//     /**
+//      * 绝对值
+//      */
+//     public static Fraction abs(Fraction f) {
+//         int numerator = Math.abs(f.numerator);
+//         
+//         
+//     }
      @Override
      public String toString() {
     	 if(denominator==1) {
