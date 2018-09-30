@@ -10,7 +10,7 @@ import java.io.IOError;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class TestTree {
+public class Test {
 
 	public static void main(String[] args) throws IOException {
 		BufferedWriter fw;

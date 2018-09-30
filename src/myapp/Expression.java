@@ -11,8 +11,8 @@ public class Expression {
     	Random random2=new Random();
     	private StringBuilder s =new StringBuilder();
     	String[] operator=new String[] {"+","-","×","÷"};
-    	int defualtRange=3;
-    	int defualtNumOfQuestion=100;//
+    	int defualtRange=20;
+    	int defualtNumOfQuestion=10;//
     	
     	/*
     	 * 生成表达式
@@ -67,7 +67,21 @@ public class Expression {
     		ridNegative(node.clone(),node);//去掉负数
     		return node;
     	}
-
+    	public Node getCorrectTree(String s) {
+    		Node node=null;//对生成的表达式建树
+    		while(true) {
+    			
+    			node = buildTree(s);
+				ridMeaningless(node.clone(), node);
+				if(isTrue) {
+					break;
+				}else {
+					isTrue = true;
+				}
+			}
+    		ridNegative(node.clone(),node);//去掉负数
+    		return node;
+    	}
     	/*
     	 * 输入树的结点，生成正确的表达式
     	 * @param Node
@@ -252,10 +266,10 @@ public class Expression {
 //			return new Fraction(node.value);
 //    	}
 //    	
-    	public  void sum(Node node1,Node node2) {
+    	public  void sum(Node node2) {
     		if(Node.isSymbolNode(node2)) {
-			sum(node1.left,node2.left);
-			sum(node1.right,node2.right);
+			sum(node2.left);
+			sum(node2.right);
 			Fraction f =calculate(node2);
 			node2.value=f.toString();
 			
